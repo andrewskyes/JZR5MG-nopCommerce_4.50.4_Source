@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "TestProject1",
+  "SystemName": "Widgets.TestProject1",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "me",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.TestProject1.dll",
+  "Description": "Saját plugin"
+}

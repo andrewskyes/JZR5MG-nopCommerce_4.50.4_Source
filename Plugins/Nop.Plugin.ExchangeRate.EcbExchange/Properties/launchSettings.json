@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Nop.Plugin.ExchangeRate.EcbExchange": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64402;http://localhost:64403"
+    }
+  }
+}
