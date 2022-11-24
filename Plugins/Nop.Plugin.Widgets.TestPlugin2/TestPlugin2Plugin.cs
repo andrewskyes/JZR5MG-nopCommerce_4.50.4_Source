@@ -65,6 +65,7 @@ namespace Nop.Plugin.Widgets.TestPlugin1
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
                 ["Plugins.Widgets.TestPlugin2.WidgetDisplayName"] = "Display name",
+                ["Plugins.Widgets.TestPlugin2.CategoryNumber"] = "Category Number",
             });
 
             await base.InstallAsync();

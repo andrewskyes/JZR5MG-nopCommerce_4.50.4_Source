@@ -21,6 +21,16 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="CategoryNumber_OverrideForStore" asp-input="CategoryNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="CategoryNumber" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="CategoryNumber" />
+                        <span asp-validation-for="CategoryNumber"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
                         &nbsp;
                     </div>
                     <div class="col-md-9">

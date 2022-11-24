@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Services.Catalog;
 using Nop.Services.Logging;
 using Nop.Web.Framework.Components;
 
@@ -12,23 +15,32 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Components
         
         private readonly TestPlugin2Settings _testPlugin2Settings;
         private readonly ILogger _logger;
+        private readonly IProductService _productService;
+        private readonly IList<int> _categoryID;
+        private readonly ICategoryService _categoryService;
 
 
 
-        public WidgetsTestPlugin2ViewComponent(TestPlugin2Settings testPlugin2Settings, ILogger logger)
+        public WidgetsTestPlugin2ViewComponent(TestPlugin2Settings testPlugin2Settings, ILogger logger, IProductService productService, IList<int> categoryID, ICategoryService categoryService)
         {
             _testPlugin2Settings = testPlugin2Settings;
             _logger = logger;
+            _productService = productService;
+            _categoryID = categoryID;
+            _categoryService = categoryService;
         }
 
 
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
             var script = "";
+            _categoryID.Add(_testPlugin2Settings.CategoryNumber);
+            var nbrOfProducts = await _productService.GetNumberOfProductsInCategoryAsync(_categoryID);
+            var categories = await _categoryService.GetAllCategoriesAsync(0);
 
             try
             {
-                script = "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\\r\\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\\r\\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\\r\\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\\r\\n})(window,document,'script','dataLayer','\" + _testPlugin2Settings.WidgetDisplayName + \"');</script>";
+                script = $"<h1>{categories}</h1>";
             }
             catch (Exception ex)
             {

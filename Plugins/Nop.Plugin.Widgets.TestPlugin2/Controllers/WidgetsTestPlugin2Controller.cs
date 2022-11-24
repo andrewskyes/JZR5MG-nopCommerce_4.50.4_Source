@@ -59,12 +59,14 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Controllers
             var model = new ConfigurationModel
             {
                 WidgetDisplayName = testPlugin2Settings.WidgetDisplayName,
+                CategoryNumber = testPlugin2Settings.CategoryNumber,
                 ActiveStoreScopeConfiguration = storeScope
             };
 
             if (storeScope > 0)
             {
                 model.WidgetDisplayName_OverrideForStore = await _settingService.SettingExistsAsync(testPlugin2Settings, x => x.WidgetDisplayName, storeScope);
+                model.CategoryNumber_OverrideForStore = await _settingService.SettingExistsAsync(testPlugin2Settings, x => x.CategoryNumber, storeScope);
             }
 
             return View("~/Plugins/Widgets.TestPlugin2/Views/Configure.cshtml", model);
@@ -81,11 +83,13 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Controllers
             var testPlugin2Settings = await _settingService.LoadSettingAsync<TestPlugin2Settings>(storeScope);
 
             testPlugin2Settings.WidgetDisplayName = model.WidgetDisplayName;
+            testPlugin2Settings.CategoryNumber = model.CategoryNumber;
 
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
              * and loaded from database after each update */
             await _settingService.SaveSettingOverridablePerStoreAsync(testPlugin2Settings, x => x.WidgetDisplayName, model.WidgetDisplayName_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(testPlugin2Settings, x => x.CategoryNumber, model.CategoryNumber_OverrideForStore, storeScope, false);
 
             //now clear settings cache
             await _settingService.ClearCacheAsync();
