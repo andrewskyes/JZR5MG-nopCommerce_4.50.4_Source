@@ -28,7 +28,6 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Components
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
             var script = "";
-            var routeData = Url.ActionContext.RouteData;
 
             try
             {
