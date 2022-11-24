@@ -38,7 +38,7 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Components
             {
                 await _logger.InsertLogAsync(Core.Domain.Logging.LogLevel.Error, "Nem sikerült létrehozni a GTM kódot", ex.ToString());
             }
-            return View("~/Plugins/Widgets.GoogleAnalytics/Views/PublicInfo.cshtml", script);
+            return View("~/Plugins/Widgets.TestPlugin2/Views/PublicInfo.cshtml", script);
         }
     }
 }
