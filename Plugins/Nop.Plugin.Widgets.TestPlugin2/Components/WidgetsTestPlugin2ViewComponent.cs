@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Nop.Services.Logging;
 using Nop.Web.Framework.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.TestPlugin2.Components
 {
-    [ViewComponent(Name = "WidgetsTestPlugin2")]
-    internal class WidgetsTestPlugin2ViewComponent : NopViewComponent
+    [ViewComponentAttribute(Name = "WidgetsTestPlugin2")]
+    public class WidgetsTestPlugin2ViewComponent : NopViewComponent
     {
         
         private readonly TestPlugin2Settings _testPlugin2Settings;
