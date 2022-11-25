@@ -1,0 +1,43 @@
+﻿@model Nop.Plugin.Widgets.TestPlugin2.Models.ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<form asp-controller="WidgetsTestPlugin2" asp-action="Configure" method="post">
+    <div class="cards-group">
+        <div class="card card-default">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="WidgetDisplayName_OverrideForStore" asp-input="WidgetDisplayName" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="WidgetDisplayName" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="WidgetDisplayName" />
+                        <span asp-validation-for="WidgetDisplayName"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="CategoryNumber_OverrideForStore" asp-input="CategoryNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="CategoryNumber" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="CategoryNumber" />
+                        <span asp-validation-for="CategoryNumber"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <button type="submit" name="save" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

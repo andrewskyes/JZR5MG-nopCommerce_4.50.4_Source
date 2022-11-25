@@ -1,16 +1,11 @@
 ﻿{
   "Group": "Widgets",
   "FriendlyName": "Saját Widget",
-  "SupportedVersions": [
-    "4.50"
-  ],
+  "SystemName": "Widgets.TestPlugin2",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.50" ],
   "Author": "nopCommerce team",
   "DisplayOrder": 1,
   "FileName": "Nop.Plugin.Widgets.TestPlugin2.dll",
-  "Description": "Saját plugin :)",
-  "LimitedToStores": [],
-  "LimitedToCustomerRoles": [],
-  "DependsOnSystemNames": [],
-  "SystemName": "Widgets.TestPlugin2",
-  "Version": "1.45"
+  "Description": "Saját plugin :)"
 }
