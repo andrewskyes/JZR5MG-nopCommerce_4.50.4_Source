@@ -33,20 +33,28 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Components
 
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
-            var script = "";
+            var html = "";
             _categoryID.Add(_testPlugin2Settings.CategoryNumber);
             var nbrOfProducts = await _productService.GetNumberOfProductsInCategoryAsync(_categoryID);
-            var categories = await _categoryService.GetAllCategoriesAsync(0);
+            var selectedCategory = await _categoryService.GetCategoryByIdAsync(_testPlugin2Settings.CategoryNumber);
+            string categoryName;
+            if (selectedCategory != null)
+            {
+                categoryName = selectedCategory.Name;
+            } else
+            {
+                categoryName = "Selected category is NOT valid in widget settings.";
+            }
 
             try
             {
-                script = $"<h1>{categories}</h1>";
+                html = $"<h1>{_testPlugin2Settings.WidgetDisplayName}</h1><br><h2>{categoryName}({nbrOfProducts})</h2>";
             }
             catch (Exception ex)
             {
-                await _logger.InsertLogAsync(Core.Domain.Logging.LogLevel.Error, "Nem sikerült létrehozni a GTM kódot", ex.ToString());
+                await _logger.InsertLogAsync(Core.Domain.Logging.LogLevel.Error, "Could NOT load category highlight widget (TestPlugin2)...", ex.ToString());
             }
-            return View("~/Plugins/Widgets.TestPlugin2/Views/PublicInfo.cshtml", script);
+            return View("~/Plugins/Widgets.TestPlugin2/Views/PublicInfo.cshtml", html);
         }
     }
 }
