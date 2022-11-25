@@ -1,2 +1,8 @@
-﻿@model string
-@Html.Raw(Model)
+﻿@model Nop.Plugin.Widgets.TestPlugin2.Models.PublicInfoModel
+@{
+    Layout = "";
+}
+
+<h1>@Model.HeaderText</h1>
+<br>
+<h2><a href="/@Model.CategoryText.ToLower()" style="color:#5E9CC3">@Model.CategoryText (@Model.CountText)</a></h2>

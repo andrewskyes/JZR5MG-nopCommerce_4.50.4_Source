@@ -3,9 +3,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Plugin.Widgets.TestPlugin2.Models;
 using Nop.Services.Catalog;
 using Nop.Services.Logging;
 using Nop.Web.Framework.Components;
+using Nop.Web.Framework.Models;
 
 namespace Nop.Plugin.Widgets.TestPlugin2.Components
 {
@@ -45,16 +47,17 @@ namespace Nop.Plugin.Widgets.TestPlugin2.Components
             {
                 categoryName = "Selected category is NOT valid in widget settings.";
             }
-
-            try
-            {
-                html = $"<h1>{_testPlugin2Settings.WidgetDisplayName}</h1><br><h2>{categoryName}({nbrOfProducts})</h2>";
-            }
-            catch (Exception ex)
-            {
-                await _logger.InsertLogAsync(Core.Domain.Logging.LogLevel.Error, "Could NOT load category highlight widget (TestPlugin2)...", ex.ToString());
-            }
-            return View("~/Plugins/Widgets.TestPlugin2/Views/PublicInfo.cshtml", html);
+            PublicInfoModel model;
+            
+                //html = $"<h1>{_testPlugin2Settings.WidgetDisplayName}</h1><br><h2>{categoryName}({nbrOfProducts})</h2>";
+                model = new PublicInfoModel
+                {
+                    CategoryText = categoryName,
+                    CountText = nbrOfProducts.ToString(),
+                    HeaderText = _testPlugin2Settings.WidgetDisplayName,
+                };
+            
+            return View("~/Plugins/Widgets.TestPlugin2/Views/PublicInfo.cshtml", model);
         }
     }
 }
